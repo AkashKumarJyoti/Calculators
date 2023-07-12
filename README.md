@@ -1,3 +1,4 @@
+# calculators
 Calculators
 Calculators is a versatile Flutter application that provides a collection of handy calculators and converters. With Calculators, you can perform a variety of calculations, conversions, and even calculate your Body Mass Index (BMI), as well as calculate mortgage payments, all from one convenient app.
 
