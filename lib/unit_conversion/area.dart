@@ -1,0 +1,303 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class Area extends StatefulWidget {
+  const Area({Key? key}) : super(key: key);
+
+  @override
+  State<Area> createState() => _AreaState();
+}
+
+class _AreaState extends State<Area> {
+  GlobalKey formkey = GlobalKey();
+  TextEditingController unitController = TextEditingController();
+  String result = "0";
+  String dropdownValue1 = "Square meter (m²)";
+  String dropdownValue2 = "Acre (ac)";
+
+  final List<String> area = [
+    "Square meter (m²)",
+    "Square decimeter (dm²)",
+    "Square centimeter (cm²)",
+    "Square kilometer (km²)",
+    "Square millimeter (mm²)",
+    "Are (ar)",
+    "Hectare (ha)",
+    "Acre (ac)",
+  ];
+
+  final Map<String, String> unitAbbreviations = {
+    'Square meter (m²)': 'm²',
+    'Square decimeter (dm²)': 'dm²',
+    'Square centimeter (cm²)': 'cm²',
+    'Square kilometer (km²)': 'km²',
+    'Square millimeter (mm²)': 'mm²',
+    'Are (ar)': 'ar',
+    'Hectare (ha)': 'ha',
+    'Acre (ac)': 'ac',
+  };
+
+  double convertLength(double inputValue, String sourceUnit, String targetUnit) {
+    // Create a map that holds the conversion multipliers for each unit.
+    Map<String, double> multiplier = {
+      'Square meter (m²)': 1,
+      'Square decimeter (dm²)': 100,
+      'Square centimeter (cm²)': 10000,
+      'Square kilometer (km²)': 0.000001,
+      'Square millimeter (mm²)': 1000000,
+      'Are (ar)': 0.01,
+      'Hectare (ha)': 0.0001,
+      'Acre (ac)': 0.0002471,
+    };
+    double valueInMeters = inputValue / multiplier[sourceUnit]!;
+
+    return valueInMeters * multiplier[targetUnit]!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            color: const Color(0xFF532D60),
+          ),
+          title: const Row(
+              children: <Widget>[
+                Icon(Icons.area_chart, color: Color(0xFF532D60)),
+                SizedBox(width: 10.0),
+                Text("Area conversion",  style: TextStyle(color: Color(0xFF532D60), fontSize: 23)),
+              ]
+          ),
+          backgroundColor: const Color(0xAFC067F7),
+        ),
+        backgroundColor: const Color(0xFFE9B8FA),
+        body: Container(
+          padding: const EdgeInsets.all(10.0),
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  Form(
+                      key: formkey,
+                      child: Container(
+                          height: 360,
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xFAEC407A),
+                                  Color(0xAF7E57C2),
+                                  Color(0xAFF44336)
+                                ],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                              ),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          child: Card(
+                              elevation: 35.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                                side: const BorderSide(
+                                    color: Colors.grey, width: 1.0),
+                              ),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xFFD595FC),
+                                          Color(0xAFAF9FF1),
+                                          Color(0xFFB180CF),
+                                        ], // Use the desired colors in the list
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      borderRadius:
+                                      BorderRadius.circular(15.0)),
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(children: <Widget>[
+                                    TextField(
+                                      controller: unitController,
+                                      keyboardType:
+                                      const TextInputType.numberWithOptions(
+                                          decimal: true),
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                            Icons.straighten_outlined,
+                                            color: Color(0xFF532D60)),
+                                        hintText: "Enter the value",
+                                        border: const OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10.0),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xFF46096C),
+                                              width: 2.0),
+                                        ),
+                                        filled: true,
+                                        fillColor: const Color(0xFFE9B8FA),
+                                        contentPadding:
+                                        const EdgeInsets.symmetric(
+                                            vertical: 19.0,
+                                            horizontal: 20.0),
+                                      ),
+                                      style: const TextStyle(
+                                          color: Color(0xFF9D0505)),
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    const Text("Select Parameters",
+                                        style: TextStyle(
+                                            color: Color(0xFF532D60),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 22.0,
+                                            fontStyle: FontStyle.italic)),
+                                    const SizedBox(height: 10.0),
+                                    DropdownButton<String>(
+                                      value: dropdownValue1,
+                                      icon: const Icon(
+                                          Icons.arrow_drop_down_rounded,
+                                          color: Color(0xFF532D60)),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                      underline: Container(
+                                        height: 2,
+                                        color: const Color(0xFF532D60),
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownValue1 = newValue!;
+                                        });
+                                      },
+                                      items: area.map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    const SizedBox(height: 10.0),
+                                    DropdownButton<String>(
+                                      value: dropdownValue2,
+                                      icon: const Icon(
+                                          Icons.arrow_drop_down_rounded,
+                                          color: Color(0xFF532D60)),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                      underline: Container(
+                                        height: 2,
+                                        color: const Color(0xFF532D60),
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownValue2 = newValue!;
+                                        });
+                                      },
+                                      items: area.map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(15.0),
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xFFA23FDF),
+                                            Color(0xFFA98FF2),
+                                            Color(0xFF7E66C4)
+                                          ],
+                                          // Use the desired colors in the list
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                      ),
+                                      child: TextButton(
+                                          onPressed: () {
+                                            double input = double.parse(unitController.text);
+                                            double value = convertLength(input, dropdownValue1, dropdownValue2);
+                                            setState(() {
+                                              result = value.toStringAsFixed(5) ;
+                                            });
+                                          },
+                                          child: const Text("Calculate",
+                                              style: TextStyle(
+                                                  color: Color(0xFF532D60),
+                                                  fontSize: 24.0))),
+                                    )
+                                  ]))))),
+                  const SizedBox(height: 15.0),
+                  Container(
+                      height: 90,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xFAEC407A),
+                              Color(0xAF7E57C2),
+                              Color(0xAFF44336)
+                            ], // Use the desired colors in the list
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                          ),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: Center(
+                          child: Card(
+                              elevation: 35.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                                // Set desired border radius
+                                side: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0), // Set border color and width
+                              ),
+                              child: Container(
+                                // width: w,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFFD595FC),
+                                        Color(0xAFAF9FF1),
+                                        Color(0xFFC361FF)
+                                      ], // Use the desired colors in the list
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child:  Text(
+                                      hasFractionalPart(result)
+                                          ? '${double.parse(result).toStringAsFixed(5)} ${unitAbbreviations[dropdownValue2]}'
+                                          : '${double.parse(result).toStringAsFixed(0)} ${unitAbbreviations[dropdownValue2]}',
+                                      style: const TextStyle(color: Color(0xFF532D60), fontSize: 23),
+                                    ),
+                                  )))))
+                ],
+              )
+            ],
+          ),
+        )
+    );
+  }
+  bool hasFractionalPart(String value) {
+    double number = double.parse(value);
+    return number % 1 != 0;
+  }
+}
