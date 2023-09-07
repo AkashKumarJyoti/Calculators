@@ -9,15 +9,21 @@ Currency Converter: Convert between different currencies using up-to-date exchan
 BMI Calculator: Determine your Body Mass Index (BMI) by entering your height and weight.
 Mortgage Calculator: Calculate mortgage payments based on loan amount, interest rate, and loan term.
 
-## Getting Started
+# Pubspec.yaml file dependencies -> 
+      cupertino_icons:
+      font_awesome_flutter:
+      http:
+      math_expressions: 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Screenshot
+<img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img1.jpg"  width="350" height="600" />
+<img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img2.jpg"  width="350" height="600" />
+<p float="left">
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img4.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img5.jpg" width="350" height="600" />
+</p>
+<p float="left">
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img3.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img6.jpg" width="350" height="600" />
+</p>
