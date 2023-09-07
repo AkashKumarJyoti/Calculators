@@ -17,13 +17,13 @@ Mortgage Calculator: Calculate mortgage payments based on loan amount, interest 
 
 
 # Screenshot
-<img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img1.jpg"  width="350" height="600" />
-<img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img2.jpg"  width="350" height="600" />
+<img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img1.jpg"  width="350" height="600" />
+<img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img2.jpg"  width="350" height="600" />
 <p float="left">
-  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img4.jpg" width="350" height="600" />
-  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img5.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img4.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img5.jpg" width="350" height="600" />
 </p>
 <p float="left">
-  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img3.jpg" width="350" height="600" />
-  <img src="https://github.com/AkashKumarJyoti/images/blob/master/cals%20img6.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img3.jpg" width="350" height="600" />
+  <img src="https://github.com/AkashKumarJyoti/images/blob/master/calculators/cals%20img6.jpg" width="350" height="600" />
 </p>
